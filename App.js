@@ -7,7 +7,8 @@ import Home from './src/screens/Home';
 import { Provider } from 'react-redux';
 import reduxStore from "./src/store";
 import BottomTabNavigation from './src/Navigation/BottomTabNavigation';
-import "./"
+import Notifications from './src/screens/Notifications';
+import DonorList from './src/screens/DonorList';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -42,6 +43,19 @@ export default function App() {
               options={{
                 headerShown:false,
               }}/>
+               <Stack.Screen
+              name="Notifications"
+              component={Notifications}
+              options={{
+                headerShown:false,
+              }}/>
+               <Stack.Screen
+              name="DonorList"
+              component={DonorList}
+              options={{
+                headerShown:false,
+              }}/>
+             
       </Stack.Navigator>
     </NavigationContainer>
     </Provider>
