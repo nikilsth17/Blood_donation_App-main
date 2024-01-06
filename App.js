@@ -9,11 +9,14 @@ import reduxStore from "./src/store";
 import BottomTabNavigation from './src/Navigation/BottomTabNavigation';
 import Notifications from './src/screens/Notifications';
 import DonorList from './src/screens/DonorList';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 const Stack = createNativeStackNavigator();
+const queryClient = new QueryClient();
 export default function App() {
   return (
-    <Provider store={reduxStore}>
+    <QueryClientProvider client={queryClient}>
+            <Provider store={reduxStore}>
         <NavigationContainer>
       <Stack.Navigator initialRouteName='Welcome'>
         
@@ -59,6 +62,8 @@ export default function App() {
       </Stack.Navigator>
     </NavigationContainer>
     </Provider>
+    </QueryClientProvider>
+
     
   );
 };

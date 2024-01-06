@@ -1,18 +1,54 @@
-import { View, Text, TouchableOpacity} from 'react-native'
+import { View, Text, TouchableOpacity, ActivityIndicator} from 'react-native'
 import React from 'react'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
-import { Avatar, Button, Card, IconButton } from 'react-native-paper'
+import {  Avatar, Button, Card, IconButton } from 'react-native-paper'
 
 
-const dataCard = [
-    { id: 1, name: "John Doe", bloodGroup: "Subtitle 1", contactNo: "123-456-7890" },
-    { id: 2, name: "Card 2", bloodGroup: "Subtitle 2", contactNo: "987-654-3210" },
-    { id: 3, name: "Card 3", bloodGroup: "Subtitle 3", contactNo: "555-123-4567" },
-];
+
 
 const DonorList = () => {
-    const navigation= useNavigation();
+  const navigation = useNavigation();
+  const [userData, setUserData] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [isError, setIsError] = React.useState(false);
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://192.168.18.173:7000/user/all");
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setUserData(data);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setIsError(true);
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" color="#DC143C" />
+      </View>
+    );
+  }
+
+  if (isError) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Error fetching data</Text>
+      </View>
+    );
+  }
   return (
     <>
       <View style={{ 
@@ -33,53 +69,41 @@ const DonorList = () => {
         onPress={()=>navigation.goBack()}/>
       <Text style={{fontSize:23,color:"white",paddingTop:30}}>Donor List</Text>
     </View>
-    <View style={{paddingVertical:10,rowGap:10}}>
-    {
-        dataCard?.map((item) => {
-            return (
-                <Card style={{justifyContent:"space-between",
-                alignItems:"center",
-                flexDirection:"row",
-                marginLeft:15,
-                marginRight:15,
-                display:"flex",
-                flexWrap:"wrap",
-                }}>
-                     <Card.Title
-                        key={item.id}
-                        title={item.name}
-                        subtitle={`Blood Group: ${item.bloodGroup}\nContact No: ${item.contactNo}`}
-                        // left={(props) => <Avatar.Icon {...props} icon="folder" />}
-                        right={(props) => <IconButton {...props} icon="dots-vertical" onPress={() => {}} />}
-                    />
-                    <View style={{flexDirection:"row",justifyContent:"space-around"}}>
-                        <TouchableOpacity style={{width:100}}>
-                        <Button  mode='outlined' 
-                        >
-                            Call
-                        </Button>
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                        <Button mode='outlined'>Message</Button>
-
-                        </TouchableOpacity>
-                
-                    </View>
-                   
-                      
+    <View style={{ paddingVertical: 15,rowGap:10 }}>
+          {userData.map((item) => (
+              <Card key={item._id} style={{justifyContent:"space-between",
               
-                    
-                      
-                       
-                   
-                </Card>
-               
-            );
-        })
-    }
-     
+              flexDirection:"row",
+              marginLeft:15,
+              marginRight:15,
+              }}>
+                <Card.Title
+                  title={item.fullName}
+                  subtitle={
+                    <View style={{flexDirection:"row",justifyContent:"space-between"}}>
+                    <View style={{marginLeft:20}}>
+                      <Text>Blood Type:{`\n ${item.bloodType}`}</Text>
+                    </View>
+                    <View style={{marginLeft:50,paddingLeft:50}}>
+                        <Text>Contact No: {`\n${item.phoneNumber}`}</Text>
+                    </View>
+                    </View>
+                  }
+                  subtitleStyle={{width:500}}
+                  right={(props) => <IconButton {...props} icon="dots-vertical" onPress={() => {}} />}
+                />
+              <Text style={{textAlign:"center"}}>Location:{item.location}</Text>
+                <View style={{paddingTop:5,marginBottom:10, flexDirection: "row", justifyContent: "space-around" }}>
+                  <TouchableOpacity style={{ width: 100 }}>
+                    <Button mode="contained">Call</Button>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <Button mode="outlined">Message</Button>
+                  </TouchableOpacity>
+                </View>
+              </Card>
+          ))}
     </View>
-    
     </>
   
   )
