@@ -1,9 +1,10 @@
 import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 import React, { useEffect } from 'react';
-import { Ionicons } from '@expo/vector-icons';
+import { AntDesign, Entypo, FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { Avatar, Button, Card, Dialog, IconButton, Portal, Searchbar } from 'react-native-paper';
 import FilterDonor from '../components/filterDonor';
+import { ApiBaseUrl } from '../lib/axios';
 
 const DonorList = () => {
   const navigation = useNavigation();
@@ -21,7 +22,7 @@ const DonorList = () => {
 
   const handleFilter = async (filterCriteria) => {
     try {
-      const response = await fetch('http://192.168.18.173:7000/api/filterDonors', {
+      const response = await fetch(`${ApiBaseUrl}/api/filterDonors`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -102,17 +103,17 @@ const DonorList = () => {
         <Text style={{ fontSize: 23, color: "white", paddingTop: 30 }}>Donor List</Text>
       </View>
 {/* ========================filter for the donor list =========================== */}
-       <View>
-      <Button onPress={handleOpenFilter}>Open filter</Button>
-      {open && (
-        <Portal>
-          <Dialog visible={open} onDismiss={() => setOpen(false)}>
-            <Dialog.Content>
-              <FilterDonor onFilter={handleFilter} />
-            </Dialog.Content>
-          </Dialog>
-        </Portal>
-      )}
+      <View>
+        <Button onPress={handleOpenFilter}>Open filter</Button>
+        {open && (
+          <Portal>
+            <Dialog visible={open} onDismiss={() => setOpen(false)}>
+              <Dialog.Content>
+                <FilterDonor onFilter={handleFilter} />
+              </Dialog.Content>
+            </Dialog>
+          </Portal>
+        )}
     </View>
 {/*=============================================================================================  */}
       
@@ -150,6 +151,29 @@ const DonorList = () => {
             </View>
           </Card>
         ))}
+      </View>
+
+      <View style={{flexDirection:"row",alignItems:"center", backgroundColor:"#DC143C",marginTop:260,justifyContent:"space-between"}}>
+      <Text style={{fontSize:20,marginLeft:20,color:"white"}}>Locate your</Text>
+
+      <View
+         style={{
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "#EDF1F4",
+          width:60,
+          height: 60,
+          top:-5,
+          marginLeft:10,
+          borderRadius:30,
+          flexDirection:"row",
+          justifyContent:"space-between",
+        }}
+        >
+          <Entypo name="location" size={34} color="black" marginLeft={15} onPress={()=>navigation.navigate("Location")}/>
+        </View>
+        <Text marginRight={50} style={{fontSize:20,color:"white"}}>Donor</Text>
+
       </View>
     </>
   );

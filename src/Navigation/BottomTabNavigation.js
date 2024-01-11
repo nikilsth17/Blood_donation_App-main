@@ -68,10 +68,10 @@ const BottomTabNavigation = () => {
           alignItems: "center",
           justifyContent: "center",
           backgroundColor: "#EDF1F4",
-          width: Platform.OS == "ios" ? 50 : 60,
-          height: Platform.OS == "ios" ? 50 : 60,
-          top: Platform.OS == "ios" ? -10 : -20,
-          borderRadius: Platform.OS == "ios" ? 25 : 30,
+          width:60,
+          height:60,
+          top: -20,
+          borderRadius:30,
 
          }}
         >

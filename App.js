@@ -10,6 +10,9 @@ import DonorList from './src/screens/DonorList';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { DefaultTheme,Provider as PaperProvider } from 'react-native-paper';
 import FilterDonor from './src/components/filterDonor';
+import RequestDonation from './src/screens/RequestDonation';
+import BloodCompatibilityChart from './src/screens/BloodCompatibilityChart';
+import Location from './src/components/location';
 
 const Stack = createNativeStackNavigator();
 const queryClient = new QueryClient();
@@ -67,6 +70,25 @@ export default function App() {
             options={{
               headerShown:false,
             }}/>
+             <Stack.Screen
+            name="RequestDonation"
+            component={RequestDonation}
+            options={{
+              headerShown:false,
+            }}/>
+               <Stack.Screen
+            name="BloodCompatibilityChart"
+            component={BloodCompatibilityChart}
+            options={{
+              headerShown:false,
+            }}/>
+              <Stack.Screen
+            name="Location"
+            component={Location}
+            options={{
+              headerShown:false,
+            }}/>
+           
            
     </Stack.Navigator>
   </NavigationContainer>

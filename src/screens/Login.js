@@ -7,9 +7,7 @@ import Button from '../components/button';
 import { Ionicons } from '@expo/vector-icons';
 import Checkbox from "expo-checkbox"
 import axios from 'axios';
-// import { openSuccessSnackbar } from '../store/slice/snackbarSlice';
-// import { useDispatch } from 'react-redux';
-
+import {ApiBaseUrl } from '../lib/axios';
 
 const Login = ({navigation}) => {
     const [isPasswordShown, setIsPasswordShown] = useState(false);
@@ -17,7 +15,6 @@ const Login = ({navigation}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    // const dispatch = useDispatch();
 
 
 
@@ -28,7 +25,7 @@ const Login = ({navigation}) => {
                 email,
                 password,
             };
-            const response=await axios.post("http://192.168.18.173:7000/user/login",requestData);
+            const response=await axios.post(`${ApiBaseUrl}/user/login`,requestData);
             setResponseData(response?.data);
             navigation.navigate("BottomTabNavigation");
         } catch (error) {

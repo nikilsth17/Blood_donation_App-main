@@ -46,22 +46,7 @@ const Home = () => {
        }}
     />
       </View> 
-      
-      {/* <View style={{
-        marginVertical: 26,
-        backgroundColor: 'grey',
-        borderWidth: 2,
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
-      }}>
-        <Card.Title
-          title="Card Title"
-          subtitle="Card Subtitle"
-          left={(props) => <Avatar.Icon {...props} icon="folder" />}
-          right={(props) => <IconButton {...props} icon="dots-vertical" onPress={() => {}} />}
-        />
-         
-      </View> */}
+    
       <View style={{
           justifyContent:"space-between",
           alignItems:"center",
@@ -112,7 +97,7 @@ const Home = () => {
                   <Text>Donation center</Text>
                 </Surface>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>navigation.navigate("BloodCompatibilityChart")}>
                     <Surface style={{ padding: 8,
                     height: 120,
                     width: 150,
@@ -123,7 +108,7 @@ const Home = () => {
                     <Text>Blood Compatibility Chart</Text>
                   </Surface>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>navigation.navigate("RequestDonation")}>
                   <Surface style={{ padding: 8,
                   height: 120,
                   width: 150,

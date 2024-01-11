@@ -2,15 +2,10 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { Snackbar } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
-// import { setOpen } from '../store/slice/snackbarSlice';
 
 const CustomSnackbar = () => {
   const { open, severity, message } = useSelector((state) => state.snackbar);
-  // const dispatch = useDispatch();
 
-  // const onDismissSnackBar = () => {
-  //   dispatch(setOpen(false));
-  // };
 
   return (
     <View style={{ flex: 1, 

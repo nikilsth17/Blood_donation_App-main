@@ -5,7 +5,8 @@ import COLORS from '../constants/colors';
 import { Ionicons } from "@expo/vector-icons";
 import Checkbox from "expo-checkbox"
 import Button from '../components/button';
-import axios from "axios";
+import {ApiBaseUrl } from '../lib/axios';
+import axios from 'axios';
 
 const Register =({ navigation }) => {
     const [isPasswordShown, setIsPasswordShown] = useState(false);
@@ -32,7 +33,7 @@ const Register =({ navigation }) => {
           gender,
         };
         console.log('Request Data:', requestData);
-        const response = await axios.post("http://192.168.18.173:7000/user/register", requestData);
+        const response = await axios.post(`${ApiBaseUrl}/user/register`, requestData);
         setResponseData(response.data);
         navigation.navigate("Login");
       } catch (error) {
