@@ -25,8 +25,6 @@ export default function App() {
     <PaperProvider>
     <NavigationContainer>
     <Stack.Navigator initialRouteName='Welcome'>
-      
-        
       <Stack.Screen 
         name='Login'
         component={Login}

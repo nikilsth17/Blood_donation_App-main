@@ -18,8 +18,7 @@ const screenOptions = {
     elevation: 0,
     height: 60,
     backgroundColor:"#DC143C",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
+    
 
   }
 }
