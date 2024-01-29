@@ -45,7 +45,7 @@ const DonorList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://192.168.18.173:5000/user/all');
+        const response = await fetch('http://192.168.18.173:7000/user/all');
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
