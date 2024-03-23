@@ -13,6 +13,8 @@ import FilterDonor from './src/components/filterDonor';
 import RequestDonation from './src/screens/RequestDonation';
 import BloodCompatibilityChart from './src/screens/BloodCompatibilityChart';
 import Location from './src/components/location';
+import MapViews from './src/components/MapView';
+import RequestList from './src/screens/RequestList';
 
 const Stack = createNativeStackNavigator();
 const queryClient = new QueryClient();
@@ -83,6 +85,18 @@ export default function App() {
               <Stack.Screen
             name="Location"
             component={Location}
+            options={{
+              headerShown:false,
+            }}/>
+            <Stack.Screen
+            name="MapView"
+            component={MapViews}
+            options={{
+              headerShown:false,
+            }}/>
+           <Stack.Screen
+            name="RequestList"
+            component={RequestList}
             options={{
               headerShown:false,
             }}/>

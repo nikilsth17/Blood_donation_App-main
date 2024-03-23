@@ -15,14 +15,6 @@ const FilterDonor = ({ onFilter }) => {
   return (
     <>
       <View>
-        <Text>FullName</Text>
-        <TextInput
-          placeholder="fullname"
-          keyboardType="default"
-          onChangeText={(text) => setFullName(text)}
-        />
-      </View>
-      <View>
         <Text>Blood Type</Text>
         <TextInput
           placeholder="bloodType"

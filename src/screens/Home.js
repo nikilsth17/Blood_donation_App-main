@@ -115,7 +115,7 @@ const Home = () => {
           gap:15
           }}>
           
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>navigation.navigate("RequestList")}>
                     <Surface style={{ padding: 8,
                       height: 120,
                       width: 150,
@@ -123,7 +123,7 @@ const Home = () => {
                       borderRadius:10,
                       justifyContent: 'center',}} elevation={4}>
                         <MaterialIcons name="message" size={24} color="red" />
-                      <Text paddingTop={10}>Message a Donor</Text>
+                      <Text paddingTop={10}>Requester list</Text>
                     </Surface>
             </TouchableOpacity>
          

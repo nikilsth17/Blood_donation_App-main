@@ -45,7 +45,7 @@ const DonorList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://192.168.18.173:7000/user/all');
+        const response = await fetch(`${ApiBaseUrl}/user/all`);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -117,10 +117,11 @@ const DonorList = () => {
     </View>
 {/*=============================================================================================  */}
       
-      <View style={{ paddingVertical: 15, rowGap: 10 }}>
+      <View style={{display:"flex", paddingVertical: 15, gap:5 }}>
         {(displayData ||[]).map((item) => (
           <Card key={item._id} style={{
-            justifyContent: "space-between",
+            display:"flex",
+           justifyContent: "space-between",
             flexDirection: "row",
             marginLeft: 15,
             marginRight: 15,
@@ -128,7 +129,7 @@ const DonorList = () => {
             <Card.Title
               title={item.fullName}
               subtitle={
-                <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                <View style={{flexDirection: "row", justifyContent: "space-between" }}>
                   <View style={{ marginLeft: 20 }}>
                     <Text>Blood Type:{`\n ${item.bloodType}`}</Text>
                   </View>
@@ -137,7 +138,7 @@ const DonorList = () => {
                   </View>
                 </View>
               }
-              subtitleStyle={{ width: 500, paddingTop: 5 }}
+              subtitleStyle={{ width: 500,gap:10, paddingTop: 5 }}
               right={(props) => <IconButton {...props} icon="dots-vertical" onPress={() => { }} />}
             />
             <Text style={{ textAlign: "center" }}>Location:{item.location}</Text>
@@ -170,7 +171,7 @@ const DonorList = () => {
           justifyContent:"space-between",
         }}
         >
-          <Entypo name="location" size={34} color="black" marginLeft={15} onPress={()=>navigation.navigate("Location")}/>
+          <Entypo name="location" size={34} color="black" marginLeft={15} onPress={()=>navigation.navigate("MapView")}/>
         </View>
         <Text marginRight={50} style={{fontSize:20,color:"white"}}>Donor</Text>
 
