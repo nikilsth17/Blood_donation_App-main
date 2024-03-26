@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, TouchableOpacity, ActivityIndicator, ScrollView, SafeAreaView } from 'react-native';
 import React, { useEffect } from 'react';
 import { AntDesign, Entypo, FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
@@ -82,7 +82,8 @@ const DonorList = () => {
     const displayData = filteredData || userData;
 
   return (
-    <>
+    <SafeAreaView>
+ <ScrollView>
       <View style={{
         borderColor: "white",
         backgroundColor: "#DC143C",
@@ -164,19 +165,20 @@ const DonorList = () => {
           backgroundColor: "#EDF1F4",
           width:60,
           height: 60,
-          top:-5,
           marginLeft:10,
           borderRadius:30,
           flexDirection:"row",
           justifyContent:"space-between",
         }}
         >
-          <Entypo name="location" size={34} color="black" marginLeft={15} onPress={()=>navigation.navigate("MapView")}/>
+          <Entypo name="location" size={34} color="black" marginLeft={15} onPress={()=>navigation.navigate("MapShow")}/>
         </View>
         <Text marginRight={50} style={{fontSize:20,color:"white"}}>Donor</Text>
 
       </View>
-    </>
+    </ScrollView>
+    </SafeAreaView>
+   
   );
 }
 

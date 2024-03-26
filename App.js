@@ -13,8 +13,8 @@ import FilterDonor from './src/components/filterDonor';
 import RequestDonation from './src/screens/RequestDonation';
 import BloodCompatibilityChart from './src/screens/BloodCompatibilityChart';
 import Location from './src/components/location';
-import MapViews from './src/components/MapView';
 import RequestList from './src/screens/RequestList';
+import MapShow from './src/components/MapShow';
 
 const Stack = createNativeStackNavigator();
 const queryClient = new QueryClient();
@@ -89,8 +89,8 @@ export default function App() {
               headerShown:false,
             }}/>
             <Stack.Screen
-            name="MapView"
-            component={MapViews}
+            name="MapShow"
+            component={MapShow}
             options={{
               headerShown:false,
             }}/>

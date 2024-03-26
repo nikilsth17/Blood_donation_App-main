@@ -86,7 +86,7 @@ const Home = () => {
                     <Text paddingTop={10}>Hospital</Text>
                   </Surface>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>navigation.navigate("MapShow")}>
                   <Surface style={{ 
                       padding: 8,
                       height: 90,
