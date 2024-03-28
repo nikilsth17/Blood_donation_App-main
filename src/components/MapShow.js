@@ -21,7 +21,9 @@ const MapShow = () => {
           { name: 'Blood bank C', latitude: 27.7203, longitude: 85.3352, rating: 4.0, contact: '111-222-3333' },
           { name: 'Blood bank D', latitude: 27.673136, longitude: 85.422302, rating: 4.0, contact: '999-111-222' },
           { name: 'Blood bank E', latitude: 27.6683, longitude:85.3206, rating: 4.0, contact: '999-111-222' },
-          // Add more bloodBank data as needed
+          { name: 'Blood bank F', latitude: 28.2096, longitude:83.9856, rating: 4.0, contact: '999-111-222' },
+          { name: 'Blood bank G', latitude: 27.5829, longitude:85.5097, rating: 3.7, contact: '999-111-222' },
+          { name: 'Blood bank H', latitude: 27.6992, longitude:86.7416, rating: 3.5, contact: '999-111-222' },
         ];
         setBloodBank(dummyBloodBankData);
       };
@@ -70,13 +72,6 @@ const MapShow = () => {
         </Marker>
       ))}
     </MapView>
-    {selectedBloodBank && (
-      <View style={styles.selectedBloodBankContainer}>
-        <Text>Selected BloodBank: {selectedBloodBank.name}</Text>
-        <Text>Rating: {selectedBloodBank.rating}</Text>
-        <Text>Contact: {selectedBloodBank.contact}</Text>
-      </View>
-    )}
     <Button title='Get Location' onPress={userLocation} />
   </View>
   )
@@ -90,14 +85,6 @@ const styles = StyleSheet.create({
     map: {
       width: Dimensions.get('window').width,
       height: Dimensions.get('window').height,
-    },
-    selectedBloodBankContainer: {
-      position: 'absolute',
-      bottom: 0,
-      left: 0,
-      right: 0,
-      backgroundColor: 'white',
-      padding: 10,
     },
   });
   

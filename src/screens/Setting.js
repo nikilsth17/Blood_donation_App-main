@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -40,9 +40,10 @@ const Setting = () => {
           onPress={() => navigation.goBack()}
         />
         <Text style={{ fontSize: 23, color: "white", paddingTop: 30 }}>
-          Donor List
+        Setting
         </Text>
       </View>
+      <ScrollView>
       <Card style={{ margin: 20,borderRadius:15 }}>
         <List.Section title="Login and Security">
           <List.Accordion
@@ -113,6 +114,8 @@ const Setting = () => {
           <Text style={{ fontSize: 17, fontWeight: 700 }}>Logout</Text>
         </View>
       </Card>
+      </ScrollView>
+      
     </>
   );
 };

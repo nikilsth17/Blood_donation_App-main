@@ -8,10 +8,7 @@ import { Rating } from '@kolking/react-native-rating'
 const Profile = () => {
   const [rating, setRating] =React.useState(0);
 
-  const handleChange = React.useCallback(
-    (value) => setRating(Math.round((rating + value) * 5) / 10),
-    [rating]
-  );
+ 
   const navigation=useNavigation();
   return (
     <View style={{flex:1,backgroundColor:"#DEE4EA"}}   >
@@ -29,7 +26,7 @@ const Profile = () => {
                 paddingTop={35}
                 onPress={() => navigation.goBack()}
               />
-            <Text style={{ fontSize: 20, color: "white",marginTop:-31,marginLeft:50}}>Blood Donate</Text>
+            <Text style={{ fontSize: 20, color: "white",marginTop:-31,marginLeft:50}}>Profile</Text>
         </View>
       
         <View style={{ 
@@ -52,7 +49,7 @@ const Profile = () => {
         justifyContent: 'center',paddingTop:10
         }}
       >
-        <Rating size={20} rating={rating} onChange={handleChange} />
+        <Rating size={20} rating={4} />
         {/* <Text style={{
           fontSize: 17,
           marginTop: 20,
@@ -60,26 +57,23 @@ const Profile = () => {
         Rated {rating} out of 5</Text> */}
       </View>
 
-      <Text style={{
+        <View style={{
+          display:"flex",
+          alignItems:"center",
+          marginLeft:30,
         backgroundColor:"#f8f8ff",
-        textAlign:"center",
-        textAlignVertical:"center",
         justifyContent:"center",
-        fontSize:20,
         marginTop:15,
-        height:50,
+        height:70,
         width:300,
-        marginLeft:30,
-        borderBottomLeftRadius:10,
-        borderTopWidth:1,
-        borderLeftWidth:1,
-        borderRightWidth:2,
         borderColor:"#708090",
-        borderBottomRightRadius:10,
-        borderTopLeftRadius:10,
-        borderTopRightRadius:10,
+        borderRadius:10,
         elevation:5
-      }}>18 Donation</Text>
+        }}>
+          <Text style={{fontSize:18}}>Total Donation: 15</Text>
+          <Text style={{fontSize:18}}>Success Donation: 11</Text>
+        </View>
+   
 
     </View>
  

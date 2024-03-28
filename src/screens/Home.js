@@ -22,11 +22,15 @@ const Home = () => {
         justifyContent: 'space-between', // Adjust as needed
         alignItems: 'center', // Adjust as needed
       }}>
-        <Avatar.Image size={110} source={require("../assets/Image/avatar.png")} style={{marginLeft:20,backgroundColor:"grey"}}/>
-        <Text style={{fontSize:20,color:"white",left:40}}>
-          Hello John !
+        <Avatar.Image size={100} source={require("../assets/Image/avatar.png")} style={{marginLeft:20,backgroundColor:"grey"}}/>
+        <View style={{marginLeft:15,gap:10}}>
+        <Text style={{fontSize:20,color:"white"}}>Welcome</Text>
+        <Text style={{fontSize:25,color:"white"}}>
+          Nikil Shrestha !
         </Text>
-        <TouchableOpacity style={{left:90}} onPress={()=>navigation.navigate("Notifications")}>
+        </View>
+      
+        <TouchableOpacity style={{left:20}} onPress={()=>navigation.navigate("Notifications")}>
           <FontAwesome5 name="bell" size={24} color="white"/>
         </TouchableOpacity>
         <Searchbar 
@@ -40,8 +44,8 @@ const Home = () => {
               width:250,
               height:50,
               top:97,
-              right:200,
-              borderRadius:40,
+              right:265,
+              borderRadius:20,
 
        }}
     />

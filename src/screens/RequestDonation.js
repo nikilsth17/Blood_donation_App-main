@@ -70,7 +70,7 @@ const RequestDonation = () => {
           onPress={() => navigation.goBack()}
         />
         <Text style={{ fontSize: 23, color: "white", paddingTop: 30 }}>
-          Blood Donate
+          Request blood
         </Text>
       </View>
       <SafeAreaView>
