@@ -34,6 +34,8 @@ const RequestList = () => {
 
   return (
     <View>
+            <ScrollView>
+
       <View
         style={{
           borderColor: "white",
@@ -57,7 +59,6 @@ const RequestList = () => {
           Blood Request List
         </Text>
       </View>
-      <ScrollView>
         <View style={{ paddingVertical: 15, gap: 5 }}>
           {userData.map((item) => (
             <Card key={item._id} style={{ marginHorizontal: 15, marginBottom: 10 }}>
