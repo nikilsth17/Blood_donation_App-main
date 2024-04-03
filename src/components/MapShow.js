@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import { StyleSheet, View, Dimensions, Button, Text } from 'react-native';
 import * as Location from 'expo-location';
+import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 const MapShow = () => {
     const [mapRegion, setMapRegion] = useState({
@@ -12,7 +14,7 @@ const MapShow = () => {
       });
       const [bloodBank, setBloodBank] = useState([]);
       const [selectedBloodBank, setSelectedBloodBank] = useState(null);
-    
+    const navigation= useNavigation();
       const fetchBloodBankData = () => {
         // Dummy bloodBank data with rating and contact information
         const dummyBloodBankData = [
@@ -24,6 +26,15 @@ const MapShow = () => {
           { name: 'Blood bank F', latitude: 28.2096, longitude:83.9856, rating: 4.0, contact: '999-111-222' },
           { name: 'Blood bank G', latitude: 27.5829, longitude:85.5097, rating: 3.7, contact: '999-111-222' },
           { name: 'Blood bank H', latitude: 27.6992, longitude:86.7416, rating: 3.5, contact: '999-111-222' },
+          { name: 'Blood bank I', latitude: 27.2000, longitude:86.7430, rating: 3.7, contact: '999-111-222' },
+          { name: 'Blood bank J', latitude: 27.8112, longitude:86.3500, rating: 3.8, contact: '999-111-222' },
+          { name: 'Blood bank K', latitude: 26.6992, longitude:86.3300, rating: 3.9, contact: '999-111-222' },
+          { name: 'Blood bank L', latitude: 27.5096, longitude:83.9856, rating: 4.0, contact: '999-111-222' },
+
+          { name: 'Blood bank M', latitude: 28.8096, longitude:80.4856, rating: 4.0, contact: '999-111-222' },
+
+          { name: 'Blood bank N', latitude: 29.1096, longitude:80.9856, rating: 4.0, contact: '999-111-222' },
+
         ];
         setBloodBank(dummyBloodBankData);
       };
@@ -54,6 +65,25 @@ const MapShow = () => {
     
   return (
     <View style={styles.container}>
+         <View style={{
+      borderColor: "white",
+      backgroundColor: "#DC143C",
+      shadowColor: "white",
+      gap: 15,
+      height: 80,
+      flexDirection: 'row',
+      alignItems: 'center',
+    }}>
+      <Ionicons
+        name="chevron-back-sharp"
+        size={35}
+        color="white"
+        style={{ left: 10 }}
+        paddingTop={35}
+        onPress={() => navigation.goBack()}
+      />
+      <Text style={{ fontSize: 23, color: "white", paddingTop: 30 }}>Map</Text>
+    </View>
     <MapView style={styles.map} region={mapRegion}>
       {bloodBank.map((bloodBank, index) => (
         <Marker

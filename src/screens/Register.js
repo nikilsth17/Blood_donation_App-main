@@ -1,4 +1,4 @@
-import { View,FlatList, Text, Image, Pressable, TextInput, TouchableOpacity, KeyboardAvoidingView, ScrollView, StyleSheet } from 'react-native'
+import { View,FlatList, Text, Image, Pressable, TextInput, TouchableOpacity, KeyboardAvoidingView, ScrollView, StyleSheet, Alert } from 'react-native'
 import React, { useState,useEffect } from 'react'
 import { SafeAreaView } from "react-native-safe-area-context";
 import COLORS from '../constants/colors';
@@ -38,7 +38,8 @@ const Register =({ navigation }) => {
         navigation.navigate("Login");
       } catch (error) {
         if (error.response) {
-           
+            Alert.alert('Error', error.response.data.error);
+
             console.error("Server responded with an error:", error.response.data);
           } else if (error.request) {
             console.error("No response received:", error.request);

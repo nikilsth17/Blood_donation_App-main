@@ -1,4 +1,4 @@
-import { View, Text,TouchableOpacity, Pressable, Image } from 'react-native'
+import { View, Text,TouchableOpacity, Pressable, Image, Alert } from 'react-native'
 import React, { useState } from 'react'
 import { TextInput } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -29,6 +29,7 @@ const Login = ({navigation}) => {
             setResponseData(response?.data);
             navigation.navigate("BottomTabNavigation");
         } catch (error) {
+            Alert.alert('Error', error.response.data.error);
             console.log(error?.message);
         }
     }

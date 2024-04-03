@@ -7,6 +7,7 @@ import {
   ScrollView,
   StyleSheet,
   TextInput,
+  Alert,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -15,13 +16,14 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Picker } from "@react-native-picker/picker";
 import { Button } from "react-native-paper";
 import { ApiBaseUrl } from "../lib/axios"; // Import ApiBaseUrl
+import axios from "axios"
 
-const RequestDonation = () => {
+const RequestDonation = ({navigation}) => {
   const [fullName, setFullName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [bloodType, setBloodType] = useState("");
   const [location, setLocation] = useState("");
-  const navigation = useNavigation();
+  const navigations = useNavigation();
 
   const handleSubmit = async () => {
     try {
@@ -31,23 +33,29 @@ const RequestDonation = () => {
         location,
         bloodType
       };
-      const response = await fetch(`${ApiBaseUrl}/requester/add`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestData),
-      });
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
+      const response = await axios.post(
+        `${ApiBaseUrl}/requester/add`,
+        requestData
+      );
+  
+      // Check if response is defined before accessing its properties
+      if (response && response.data) {
+        Alert.alert('Success', response.data.message);
+      } else {
+        // Log or handle unexpected response format
+        console.error("Unexpected response format:", response);
       }
-      const responseData = await response.json();
-      console.log(responseData); // Handle response accordingly
     } catch (error) {
-      console.log(error.message);
+      // Check if error.response is defined before accessing its properties
+      if (error.response && error.response.data) {
+        Alert.alert('Error', error.response.data.error);
+      } else {
+        // Log or handle unexpected error format
+        console.error("Unexpected error format:", error);
+      }
     }
   };
-
+  
   return (
     <>
       <View
@@ -67,7 +75,7 @@ const RequestDonation = () => {
           color="white"
           style={{ left: 10 }}
           paddingTop={35}
-          onPress={() => navigation.goBack()}
+          onPress={() => navigations.goBack()}
         />
         <Text style={{ fontSize: 23, color: "white", paddingTop: 30 }}>
           Request blood
